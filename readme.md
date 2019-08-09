@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-09 10:48:43
+ * @LastEditTime: 2019-08-09 11:25:18
+ * @LastEditors: Please set LastEditors
+ -->
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -68,10 +75,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 ### 修复
-1. 错误内容: Failed to compile.
+---
+#### 错误内容:
+
+ Failed to compile.
 
 ./node_modules/react-native-keyboard-aware-scroll-view/lib/KeyboardAwareHOC.js
 Attempted import error: 'react-native' does not contain a default export (imported as 'ReactNative').
-2. 修复方法：
+---
+##### 修复方法：
+
 在 config-overrides.js文件 addBabelPlugins()内添加 @babel/plugin-transform-modules-commonjs 
 e.g ...addBabelPlugins(..."@babel/plugin-transform-modules-commonjs") seems to fix RNW compatibility.
