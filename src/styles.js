@@ -2,18 +2,18 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 11:41:13
- * @LastEditTime: 2019-08-09 09:10:34
+ * @LastEditTime: 2019-08-09 11:14:44
  * @LastEditors: Please set LastEditors
  */
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   width: null,
-  //   height: null,
-  //   backgroundColor: "#FFF"
-  // },
+  container: {
+    flex: 1,
+    width: null,
+    height: null,
+    backgroundColor: "#FFF"
+  },
   iconContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -34,11 +34,6 @@ export default StyleSheet.create({
   },
   row: {
     paddingBottom: 20
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
     backgroundColor: 'lightblue',

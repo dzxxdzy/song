@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 11:08:13
- * @LastEditTime: 2019-08-09 10:39:34
+ * @LastEditTime: 2019-08-09 11:15:45
  * @LastEditors: Please set LastEditors
  */
 import React, { Component } from 'react';
@@ -25,11 +25,14 @@ import {
     Form,
 } from "native-base";
 
-import { TouchableOpacity, View, StyleSheet, Dimensions } from "react-native";
+import { TouchableOpacity, View, Dimensions, ScrollView } from "react-native";
 import Modal from 'modal-enhanced-react-native-web';
+import styles from './styles';
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 const SCREEN_HEIGHT = Dimensions.get('window').height
+
+Modal.setAppElement('#root');
 // import 'babel-polyfill';
 // const ReactNative = require("react-native");
 // const Modal = require("./ModalComponent/Modal");
@@ -58,19 +61,7 @@ const datas = [
 // 这是一个内部属性，其格式为 [object Xxx] ，其中 Xxx 就是对象的类型。
 // 对于 Object 对象，直接调用 toString()  就能返回 [object Object] 。
 // 而对于其他对象，则需要通过 call / apply 来调用才能返回正确的类型信息。
-// Object.prototype.toString.call('') ;   // [object String]
-// Object.prototype.toString.call(1) ;    // [object Number]
-// Object.prototype.toString.call(true) ; // [object Boolean]
-// Object.prototype.toString.call(Symbol()); //[object Symbol]
-// Object.prototype.toString.call(undefined) ; // [object Undefined]
-// Object.prototype.toString.call(null) ; // [object Null]
-// Object.prototype.toString.call(new Function()) ; // [object Function]
-// Object.prototype.toString.call(new Date()) ; // [object Date]
-// Object.prototype.toString.call([]) ; // [object Array]
-// Object.prototype.toString.call(new RegExp()) ; // [object RegExp]
-// Object.prototype.toString.call(new Error()) ; // [object Error]
-// Object.prototype.toString.call(document) ; // [object HTMLDocument]
-// Object.prototype.toString.call(window) ; //[object global] window 是全局对象 global 的引用
+
 const isType = (obj, type) => {
     // if (obj.toString() === '[object Object]') return false;
     //判断数据类型的经典方法：
@@ -143,7 +134,7 @@ class App extends Component {
     }
     _renderButton = (text, onPress) => (
         <TouchableOpacity onPress={onPress}>
-            <View>
+            <View style={styles.button}>
                 <Text>{text}</Text>
             </View>
         </TouchableOpacity>
@@ -225,15 +216,105 @@ class App extends Component {
                             <Picker.Item label="Credit Card" value="key3" />
                             <Picker.Item label="Net Banking" value="key4" />
                         </Picker>
-                        <View>
-                            {this._renderButton("Modal that can be closed on backdrop press", () =>
-                                this.setState({ visibleModal: true })
+                        <View style={styles.container}>
+                            {this._renderButton('Default modal', () =>
+                                this.setState({ visibleModal: 1 })
                             )}
+                            {this._renderButton('Sliding from the sides', () =>
+                                this.setState({ visibleModal: 2 })
+                            )}
+                            {this._renderButton('A slower modal', () =>
+                                this.setState({ visibleModal: 3 })
+                            )}
+                            {this._renderButton('Fancy modal!', () =>
+                                this.setState({ visibleModal: 4 })
+                            )}
+                            {this._renderButton('Bottom half modal', () =>
+                                this.setState({ visibleModal: 5 })
+                            )}
+                            {this._renderButton('Modal that can be closed on backdrop press', () =>
+                                this.setState({ visibleModal: 6 })
+                            )}
+                            {this._renderButton('Swipeable modal', () =>
+                                this.setState({ visibleModal: 7 })
+                            )}
+                            {this._renderButton('Scrollable modal', () =>
+                                this.setState({ visibleModal: 8 })
+                            )}
+                            <Modal isVisible={this.state.visibleModal === 1}>
+                                {this._renderModalContent()}
+                            </Modal>
                             <Modal
-                                isVisible={this.state.visibleModal}
-                                onBackdropPress={() => this.setState({ visibleModal: false })}
+                                isVisible={this.state.visibleModal === 2}
+                                animationIn="slideInLeft"
+                                animationOut="slideOutRight"
                             >
                                 {this._renderModalContent()}
+                            </Modal>
+                            <Modal
+                                isVisible={this.state.visibleModal === 3}
+                                animationInTiming={2000}
+                                animationOutTiming={2000}
+                                backdropTransitionInTiming={2000}
+                                backdropTransitionOutTiming={2000}
+                            >
+                                {this._renderModalContent()}
+                            </Modal>
+                            <Modal
+                                isVisible={this.state.visibleModal === 4}
+                                backdropColor='#f00'
+                                backdropOpacity={0.5}
+                                animationIn="zoomInDown"
+                                animationOut="zoomOutUp"
+                                animationInTiming={1000}
+                                animationOutTiming={1000}
+                                backdropTransitionInTiming={1000}
+                                backdropTransitionOutTiming={1000}
+                            >
+                                {this._renderModalContent()}
+                            </Modal>
+                            <Modal
+                                isVisible={this.state.visibleModal === 5}
+                                style={styles.bottomModal}
+                            >
+                                {this._renderModalContent()}
+                            </Modal>
+                            <Modal
+                                isVisible={this.state.visibleModal === 6}
+                                onBackdropPress={() => this.setState({ visibleModal: null })}
+                            >
+                                {this._renderModalContent()}
+                            </Modal>
+                            <Modal
+                                isVisible={this.state.visibleModal === 7}
+                                onSwipe={() => this.setState({ visibleModal: null })}
+                                swipeDirection="left"
+                            >
+                                {this._renderModalContent()}
+                            </Modal>
+                            <Modal
+                                isVisible={this.state.visibleModal === 8}
+                                onSwipe={() => this.setState({ visibleModal: null })}
+                                swipeDirection="down"
+                                scrollTo={this._handleScrollTo}
+                                scrollOffset={this.state.scrollOffset}
+                                scrollOffsetMax={400 - 300} // content height - ScrollView height
+                                style={styles.bottomModal}
+                            >
+                                <View style={styles.scrollableModal}>
+                                    <ScrollView
+                                        ref={(ref) => (this.scrollViewRef = ref)}
+                                        onScroll={this._handleOnScroll}
+                                        scrollEventThrottle={16}
+                                    >
+                                        <View style={styles.scrollableModalContent1}>
+                                            <Text>Scroll me up</Text>
+                                        </View>
+                                        <View style={styles.scrollableModalContent1}>
+                                            <Text>Scroll me up</Text>
+                                        </View>
+                                    </ScrollView>
+                                </View>
                             </Modal>
                         </View>
                     </Form>
@@ -245,24 +326,5 @@ class App extends Component {
     }
 
 }
-const styles = StyleSheet.create({
-    load_box: {
-        width: 100,
-        height: 100,
-        backgroundColor: '#0008',
-        alignItems: 'center',
-        marginLeft: SCREEN_WIDTH / 2 - 50,
-        marginTop: SCREEN_HEIGHT / 2 - 50,
-        borderRadius: 10
-    },
-    load_progress: {
-        position: 'absolute',
-        width: 100,
-        height: 90
-    },
-    load_text: {
-        marginTop: 70,
-        color: 'white',
-    }
-})
+
 export default App;
