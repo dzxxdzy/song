@@ -2,8 +2,8 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 11:23:03
- * @LastEditTime: 2019-08-09 10:44:34
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-06-17 12:47:16
+ * @LastEditors: Song
  */
 const path = require('path');
 const {
@@ -33,6 +33,6 @@ module.exports = override(
     ]),
     addBabelPlugins(
         "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-transform-modules-commonjs"
+        // "@babel/plugin-transform-modules-commonjs"
     ),
 );
