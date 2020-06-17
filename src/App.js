@@ -2,8 +2,8 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 11:08:13
- * @LastEditTime: 2019-08-09 11:15:45
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-06-17 14:34:15
+ * @LastEditors: Song
  */
 import React, { Component } from 'react';
 import logo from './logo.svg';
@@ -32,12 +32,9 @@ import styles from './styles';
 const SCREEN_WIDTH = Dimensions.get('window').width
 const SCREEN_HEIGHT = Dimensions.get('window').height
 
+console.log('SCREEN_HEIGHT :' +SCREEN_WIDTH,'SCREEN_HEIGHT'+SCREEN_HEIGHT)
 Modal.setAppElement('#root');
-// import 'babel-polyfill';
-// const ReactNative = require("react-native");
-// const Modal = require("./ModalComponent/Modal");
 
-// ReactNative.Modal = Modal;
 
 const datas = [
     {
