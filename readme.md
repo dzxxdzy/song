@@ -2,8 +2,8 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-09 10:48:43
- * @LastEditTime: 2019-08-09 11:25:18
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-06-17 12:50:18
+ * @LastEditors: Song
  -->
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -87,3 +87,4 @@ Attempted import error: 'react-native' does not contain a default export (import
 
 在 config-overrides.js文件 addBabelPlugins()内添加 @babel/plugin-transform-modules-commonjs 
 e.g ...addBabelPlugins(..."@babel/plugin-transform-modules-commonjs") seems to fix RNW compatibility.
+### 新版已修复无需添加
