@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 11:23:03
- * @LastEditTime: 2020-06-17 12:47:16
+ * @LastEditTime: 2020-06-17 14:46:20
  * @LastEditors: Song
  */
 const path = require('path');
@@ -32,7 +32,6 @@ module.exports = override(
         path.resolve('node_modules/static-container'),
     ]),
     addBabelPlugins(
-        "@babel/plugin-proposal-class-properties",
-        // "@babel/plugin-transform-modules-commonjs"
+        "@babel/plugin-proposal-class-properties"
     ),
 );
